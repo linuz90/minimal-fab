@@ -63,10 +63,10 @@
   --code-tag:                    #1a1a1a;
   --code-value:                  #6b6b6b;
 
-  --link-color:                  #2563eb;
-  --link-color-hover:            #1d4ed8;
-  --link-external-color:         #2563eb;
-  --link-external-color-hover:   #1d4ed8;
+  --link-color:                  #6ea1f7;
+  --link-color-hover:            #8db5f9;
+  --link-external-color:         #6ea1f7;
+  --link-external-color-hover:   #8db5f9;
   --link-unresolved-color:       #999999;
   --link-unresolved-opacity:     0.7;
 
@@ -133,8 +133,8 @@
   --text-error-hover:            #ff6e68;
   --text-success:                #3fb950;
   --text-selection:              rgba(56, 139, 253, 0.2);
-  --text-highlight-bg:           rgba(56, 139, 253, 0.14);
-  --text-highlight-bg-active:    rgba(56, 139, 253, 0.25);
+  --text-highlight-bg:           rgba(250, 200, 50, 0.25);
+  --text-highlight-bg-active:    rgba(250, 200, 50, 0.35);
   --text-accent:                 #ededed;
   --text-accent-hover:           #d4d4d4;
 
@@ -168,10 +168,10 @@
   --code-tag:                    #ededed;
   --code-value:                  #8a8a8a;
 
-  --link-color:                  #5b9cf5;
-  --link-color-hover:            #79b0f7;
-  --link-external-color:         #5b9cf5;
-  --link-external-color-hover:   #79b0f7;
+  --link-color:                  #6ea1f7;
+  --link-color-hover:            #8db5f9;
+  --link-external-color:         #6ea1f7;
+  --link-external-color-hover:   #8db5f9;
   --link-unresolved-color:       #555555;
   --link-unresolved-opacity:     0.7;
 
@@ -223,13 +223,15 @@
 /* ── Typography ──────────────────────────────────────────────────────────── */
 
 body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   --font-text-theme:             "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-interface-theme:        "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-monospace-theme:        "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-text-size:              15px;
   --line-height-normal:          1.7;
-  --line-width:                  700px;
-  --max-width:                   700px;
+  --line-width:                  620px;
+  --max-width:                   620px;
   --font-smallest:               11px;
   --font-smaller:                12px;
   --font-small:                  13px;
@@ -366,9 +368,9 @@ a.external-link,
 .cm-hmd-internal-link,
 .markdown-rendered a {
   text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--link-color) 40%, transparent);
-  text-underline-offset: 2px;
-  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--link-color) 30%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 0.5px;
 }
 
 a.internal-link:hover,
@@ -427,13 +429,29 @@ a.tag:hover {
 
 /* ── Lists ───────────────────────────────────────────────────────────────── */
 
+body {
+  --list-indent: 1.2em;
+}
+
 .markdown-rendered ul,
 .markdown-rendered ol {
-  padding-inline-start: 1.5em;
+  padding-inline-start: var(--list-indent);
 }
 
 .markdown-rendered li {
-  margin-bottom: 0.15em;
+  margin-bottom: 0.1em;
+}
+
+.markdown-rendered li > ul,
+.markdown-rendered li > ol {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  padding-inline-start: var(--list-indent);
+}
+
+/* Editor list indent */
+.cm-s-obsidian .HyperMD-list-line {
+  --list-indent: 1.2em;
 }
 
 .markdown-rendered ul > li::marker {
@@ -515,6 +533,16 @@ input[type="checkbox"]:checked {
   font-size: var(--h1-size);
   letter-spacing: -0.02em;
   line-height: 1.3;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.inline-title:focus,
+.inline-title:focus-visible {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
 }
 
 /* ── Scrollbar ───────────────────────────────────────────────────────────── */
@@ -559,6 +587,51 @@ input[type="checkbox"]:checked {
   border-radius: var(--radius-l);
   border: 1px solid var(--background-modifier-border);
   box-shadow: 0 8px 32px var(--background-modifier-box-shadow);
+}
+
+/* Modal surfaces in dark mode — unified, clean */
+.theme-dark .modal {
+  background: #141414;
+}
+
+.theme-dark .modal .vertical-tab-header {
+  background: #141414;
+  border-right: 1px solid #1e1e1e;
+}
+
+.theme-dark .modal .vertical-tab-content {
+  background: #141414;
+}
+
+/* Remove the card-like bg on setting groups */
+.theme-dark .setting-item {
+  border-top-color: #1e1e1e;
+}
+
+.theme-dark .vertical-tab-content-container .setting-item-heading {
+  padding-top: 16px;
+}
+
+/* Buttons — ghost style */
+.theme-dark button {
+  background: transparent;
+  border: none;
+  color: #8a8a8a;
+}
+
+.theme-dark button:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ededed;
+}
+
+.theme-dark button.mod-cta {
+  background: #ededed;
+  color: #0a0a0a;
+  border: none;
+}
+
+.theme-dark button.mod-cta:hover {
+  background: #d4d4d4;
 }
 
 .menu-item {
