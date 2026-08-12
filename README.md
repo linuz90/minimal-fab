@@ -5,7 +5,7 @@ A quiet, focused Obsidian theme based on [Minimal](https://github.com/kepano/obs
 - Minimal's current Obsidian and plugin compatibility
 - Geist + Geist Mono typography
 - Compact, subdued note and tab titles
-- Restrained document chrome and comfortable reading width
+- Restrained document chrome, polished command surfaces, and comfortable reading width
 - Small custom layer that is easy to rebase onto future Minimal releases
 
 ## Setup

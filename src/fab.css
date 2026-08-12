@@ -76,6 +76,9 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
+  --fab-prompt-shadow:
+    0 24px 64px rgba(24, 24, 27, 0.14),
+    0 4px 16px rgba(24, 24, 27, 0.06);
 }
 
 .theme-dark {
@@ -101,6 +104,9 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
+  --fab-prompt-shadow:
+    0 28px 72px rgba(0, 0, 0, 0.42),
+    0 4px 18px rgba(0, 0, 0, 0.2);
 }
 
 /* Let macOS vibrancy show through the sidebars while the writing surface and
@@ -328,6 +334,105 @@ body:not(.is-mobile)
     .workspace-drawer-vault-switcher-icon
   ) {
   --icon-size: 14px;
+}
+
+/* Embedded backlinks are supporting context, not another document heading. */
+.embedded-backlinks {
+  border-top: 0.5px solid var(--ui1);
+}
+
+.embedded-backlinks .backlink-pane > .tree-item-self,
+.embedded-backlinks .backlink-pane > .tree-item-self:hover {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+}
+
+.embedded-backlinks
+  .backlink-pane
+  > .tree-item-self.is-clickable.is-collapsed {
+  color: var(--text-faint);
+}
+
+.embedded-backlinks .backlink-pane > .tree-item-self .tree-item-flair,
+.embedded-backlinks .backlink-pane .search-result-file-title .tree-item-flair {
+  color: var(--text-faint);
+  font-size: 12px;
+  font-weight: 450;
+}
+
+.embedded-backlinks .backlink-pane .search-result-file-title {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.embedded-backlinks
+  .backlink-pane
+  .search-result
+  .collapse-icon
+  svg.svg-icon {
+  width: 8px;
+  height: 8px;
+  stroke-width: 3px;
+}
+
+.embedded-backlinks .nav-buttons-container {
+  --icon-size: 13px;
+  opacity: 0.72;
+  transition: opacity var(--fab-transition-duration) ease;
+}
+
+.embedded-backlinks .nav-buttons-container:is(:hover, :focus-within) {
+  opacity: 1;
+}
+
+/* Command palette and quick switcher read as a light floating sheet rather
+   than a full-size modal, while preserving Obsidian's generous hit targets. */
+body:not(.is-mobile) .prompt {
+  --prompt-border-color: var(--ui1);
+  --prompt-border-width: 0.5px;
+  --search-clear-button-color: var(--text-faint);
+  border-radius: 14px;
+  box-shadow: var(--fab-prompt-shadow);
+}
+
+body:not(.is-mobile) .prompt-input-container {
+  --search-clear-button-size: 14px;
+}
+
+body:not(.is-mobile) input.prompt-input,
+body:not(.is-mobile) input.prompt-input:hover,
+body:not(.is-mobile) input.prompt-input:focus,
+body:not(.is-mobile) input.prompt-input:focus-visible {
+  border-bottom: 0.5px solid var(--ui1);
+}
+
+body:not(.is-mobile) .prompt-results {
+  padding: 10px;
+}
+
+body:not(.is-mobile) .prompt .suggestion-item {
+  border-radius: var(--radius-m);
+}
+
+body:not(.is-mobile) .prompt-instructions {
+  display: none;
+}
+
+body:not(.is-mobile) .prompt-input-container .search-input-clear-button {
+  opacity: 0.58;
+  transition:
+    color var(--fab-transition-duration) ease,
+    opacity var(--fab-transition-duration) ease;
+}
+
+body:not(.is-mobile)
+  .prompt-input-container
+  .search-input-clear-button:is(:hover, :active) {
+  color: var(--text-muted);
+  opacity: 1;
 }
 
 /* Quiet document details, with stronger feedback only on interaction. */
