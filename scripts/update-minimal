@@ -1,0 +1,57 @@
+#!/bin/sh
+
+set -eu
+
+theme_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
+minimal_ref=${1:-master}
+
+case "$minimal_ref" in
+  -*)
+    printf 'Minimal ref must not begin with a dash: %s\n' "$minimal_ref" >&2
+    exit 1
+    ;;
+esac
+
+update_temp=$(mktemp -d /tmp/fab-minimal-update.XXXXXX)
+cleanup() {
+  rm -rf "$update_temp"
+}
+trap cleanup EXIT HUP INT TERM
+
+git clone --quiet --depth 1 --branch "$minimal_ref" \
+  https://github.com/kepano/obsidian-minimal.git \
+  "$update_temp/minimal"
+
+minimal_version=$(sed -n 's/.*"version":[[:space:]]*"\([^"]*\)".*/\1/p' "$update_temp/minimal/manifest.json" | head -n 1)
+minimal_app_version=$(sed -n 's/.*"minAppVersion":[[:space:]]*"\([^"]*\)".*/\1/p' "$update_temp/minimal/manifest.json" | head -n 1)
+minimal_commit=$(git -C "$update_temp/minimal" rev-parse --short HEAD)
+sync_date=$(date +%Y-%m-%d)
+
+if [ -z "$minimal_version" ] || [ -z "$minimal_app_version" ]; then
+  printf 'Could not read Minimal version metadata.\n' >&2
+  exit 1
+fi
+
+cp "$update_temp/minimal/theme.css" "$theme_root/upstream/minimal.css"
+cp "$update_temp/minimal/LICENSE" "$theme_root/LICENSE-Minimal"
+
+minimal_app_version="$minimal_app_version" perl -0pi -e '
+  s/("minAppVersion"\s*:\s*")[^"]*(")/$1$ENV{minimal_app_version}$2/
+' "$theme_root/manifest.json"
+
+{
+  printf '# Minimal upstream\n\n'
+  printf "Fab is based on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (\`@kepano\`).\n\n"
+  printf '%s\n' "- Version: \`$minimal_version\`"
+  printf '%s\n' "- Minimum Obsidian: \`$minimal_app_version\`"
+  printf '%s\n' "- Ref: \`$minimal_ref\`"
+  printf '%s\n' "- Commit: \`$minimal_commit\`"
+  printf '%s\n' "- Synced: \`$sync_date\`"
+  printf '%s\n' "- Vendored file: \`upstream/minimal.css\`"
+  printf '%s\n\n' "- License: \`LICENSE-Minimal\`"
+  printf '%s\n' "Run \`scripts/update-minimal [tag-or-branch]\` to refresh the base and rebuild \`theme.css\`."
+} > "$theme_root/UPSTREAM.md"
+
+"$theme_root/scripts/build-theme"
+
+printf 'Updated Fab to Minimal %s (%s).\n' "$minimal_version" "$minimal_commit"

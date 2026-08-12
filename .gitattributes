@@ -1,0 +1,3 @@
+# Preserve Minimal's vendored formatting; validate Fab's handwritten files normally.
+upstream/minimal.css -whitespace
+theme.css -whitespace

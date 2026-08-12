@@ -1,7 +1,7 @@
 {
 	"name": "Fab",
-	"version": "1.0.0",
-	"minAppVersion": "1.0.0",
+	"version": "2.0.0",
+	"minAppVersion": "1.13.0",
 	"author": "Fabrizio Rinaldi",
 	"authorUrl": "https://fabrizio.so"
 }
