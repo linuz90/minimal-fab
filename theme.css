@@ -8,7 +8,7 @@ MIT License. Copyright 2020-2026 Steph Ango (@kepano).
 */
 
 /*
-Generated from pinned Minimal CSS and Minimal Fab overrides; edit the source files, not theme.css.
+Generated from pinned Minimal CSS and mnml overrides; edit the source files, not theme.css.
 */
 
 body {
@@ -314,18 +314,18 @@ body {
   --radius-l: 8px;
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
-  --fab-transition-duration: 120ms;
-  --fab-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
-  --fab-note-identity-size: 13px;
+  --mnml-transition-duration: 120ms;
+  --mnml-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
+  --mnml-note-identity-size: 13px;
 
   /* Titles */
   --inline-title-margin-bottom: 0.75rem;
-  --inline-title-font: var(--fab-note-identity-font);
-  --inline-title-size: var(--fab-note-identity-size);
+  --inline-title-font: var(--mnml-note-identity-font);
+  --inline-title-size: var(--mnml-note-identity-size);
   --inline-title-weight: 500;
   --inline-title-line-height: 1.35;
   --inline-title-color: var(--text-muted);
-  --file-header-font-size: var(--fab-note-identity-size);
+  --file-header-font-size: var(--mnml-note-identity-size);
   --file-header-font-weight: 450;
   --file-header-justify: left;
 
@@ -1282,7 +1282,7 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
-  --fab-prompt-shadow:
+  --mnml-prompt-shadow:
     0 24px 64px rgb(24 24 27 / 14%),
     0 4px 16px rgb(24 24 27 / 6%);
 }
@@ -1310,31 +1310,31 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
-  --fab-prompt-shadow:
+  --mnml-prompt-shadow:
     0 28px 72px rgb(0 0 0 / 42%),
     0 4px 18px rgb(0 0 0 / 20%);
 }
 
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--fab-note-identity-font);
-  font-size: var(--fab-note-identity-size);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
   letter-spacing: -0.01em;
   opacity: 0.72;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 .view-header-title-container {
   opacity: 0.82;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .view-header-title-parent,
 .view-header-title {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
+  font-family: var(--mnml-note-identity-font);
   font-size: var(--file-header-font-size);
   font-weight: var(--file-header-font-weight);
   letter-spacing: -0.01em;
@@ -3582,7 +3582,7 @@ body .table-view-table > thead > tr > th {
 .view-header-title-parent .view-header-breadcrumb,
 .view-header-title-parent .view-header-breadcrumb-separator {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
+  font-family: var(--mnml-note-identity-font);
   font-size: var(--file-header-font-size);
 }
 
@@ -3603,7 +3603,7 @@ body .table-view-table > thead > tr > th {
   --icon-size: 13px;
 
   opacity: 0.72;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .markdown-rendered .mod-header + div > * {
@@ -4103,7 +4103,7 @@ body:not(.is-mobile) .prompt {
   --search-clear-button-color: var(--text-faint);
 
   border-radius: 14px;
-  box-shadow: var(--fab-prompt-shadow);
+  box-shadow: var(--mnml-prompt-shadow);
 }
 
 body:not(.is-mobile) .prompt-input-container {
@@ -4120,7 +4120,7 @@ body:not(.is-mobile) .prompt-instructions {
 
 body:not(.is-mobile) .status-bar {
   opacity: 0;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .markdown-rendered progress[value]::-webkit-progress-bar,
@@ -5794,8 +5794,8 @@ li[data-task="/"] > p > input:checked::after {
 
 .workspace .mod-root .workspace-tab-header-inner-title {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
-  font-size: var(--fab-note-identity-size);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
   font-weight: 450;
 }
 
@@ -6082,8 +6082,8 @@ body:not(.is-mobile) .prompt .suggestion-item {
 body:not(.is-mobile) .prompt-input-container .search-input-clear-button {
   opacity: 0.58;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile) .status-bar:is(:hover, :focus-within) {
@@ -7716,7 +7716,7 @@ body:not(.is-mobile)
 
 body:not(.is-mobile) .status-bar-item.plugin-sync .sync-status-icon {
   opacity: 0;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:has(.image-embed) img {
@@ -9561,8 +9561,8 @@ body:not(.is-mobile) .workspace .mod-root
   opacity: 0;
   pointer-events: none;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-grabbing, .is-fullscreen).labeled-nav.is-hidden-frameless.vault-profile-top .mod-left-split .mod-top .workspace-tab-header-container::before {
@@ -9736,7 +9736,7 @@ body:not(.is-mobile) .workspace .mod-root
   font-size: var(--h2);
 }
 
-body :is([id="cMenuModalBar"], #minimal-fab-never:not(*)) {
+body :is([id="cMenuModalBar"], #mnml-never:not(*)) {
   box-shadow: 0 2px 20px var(--shadow-color);
 }
 
@@ -9840,7 +9840,7 @@ body :is([id="cMenuModalBar"], #minimal-fab-never:not(*)) {
   opacity: 0.7;
 }
 
-body :is([id="cMenuModalBar"], #minimal-fab-never:not(*)) [class~="cMenuCommandItem"] {
+body :is([id="cMenuModalBar"], #mnml-never:not(*)) [class~="cMenuCommandItem"] {
   cursor: var(--cursor);
 }
 
@@ -9903,7 +9903,7 @@ body :is([id="cMenuModalBar"], #minimal-fab-never:not(*)) [class~="cMenuCommandI
   opacity: 1;
 }
 
-body :is([id="cMenuModalBar"], #minimal-fab-never:not(*)) button[class~="cMenuCommandItem"]:hover {
+body :is([id="cMenuModalBar"], #mnml-never:not(*)) button[class~="cMenuCommandItem"]:hover {
   background-color: var(--background-modifier-hover);
 }
 

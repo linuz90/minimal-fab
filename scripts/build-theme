@@ -20,9 +20,9 @@ fi
 cp "$theme_root/upstream/minimal.css" "$theme_raw"
 {
 printf '\n\n/* -------------------------------------------------------------------------\n'
-printf '   Minimal Fab overrides\n'
+printf '   mnml overrides\n'
 printf '   ------------------------------------------------------------------------- */\n\n'
-cat "$theme_root/src/fab.css"
+cat "$theme_root/src/mnml.css"
 } >> "$theme_raw"
 
 node "$theme_root/scripts/normalize-theme.mjs" "$theme_raw" "$theme_temp"

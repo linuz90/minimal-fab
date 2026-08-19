@@ -98,7 +98,7 @@ root.walkRules((rule) => {
       if (!invalidIdNames.has(node.value)) return;
 
       const replacement = selectorParser().astSync(
-        `:is([id="${node.value}"], #minimal-fab-never:not(*))`,
+        `:is([id="${node.value}"], #mnml-never:not(*))`,
       ).nodes[0].nodes;
       node.replaceWith(...replacement);
     });
@@ -221,7 +221,7 @@ if (license) {
   output.append(licenseComment);
 }
 const generatedComment = postcss.comment({
-  text: "Generated from pinned Minimal CSS and Minimal Fab overrides; edit the source files, not theme.css.",
+  text: "Generated from pinned Minimal CSS and mnml overrides; edit the source files, not theme.css.",
 });
 generatedComment.raws.before = "\n\n";
 output.append(generatedComment);

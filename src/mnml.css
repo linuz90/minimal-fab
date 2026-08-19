@@ -1,8 +1,8 @@
 /*
-Minimal Fab overrides for the pinned Minimal base.
+mnml overrides for the pinned Minimal base.
 
 Keep this layer intentionally small. Minimal owns compatibility with Obsidian
-and community plugins; Minimal Fab should only define the visual character.
+and community plugins; mnml should only define the visual character.
 */
 
 body {
@@ -18,18 +18,18 @@ body {
   --radius-l: 8px;
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
-  --fab-transition-duration: 120ms;
-  --fab-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
-  --fab-note-identity-size: 13px;
+  --mnml-transition-duration: 120ms;
+  --mnml-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
+  --mnml-note-identity-size: 13px;
 
   /* Titles */
   --inline-title-margin-bottom: 0.75rem;
-  --inline-title-font: var(--fab-note-identity-font);
-  --inline-title-size: var(--fab-note-identity-size);
+  --inline-title-font: var(--mnml-note-identity-font);
+  --inline-title-size: var(--mnml-note-identity-size);
   --inline-title-weight: 500;
   --inline-title-line-height: 1.35;
   --inline-title-color: var(--text-muted);
-  --file-header-font-size: var(--fab-note-identity-size);
+  --file-header-font-size: var(--mnml-note-identity-size);
   --file-header-font-weight: 450;
   --file-header-justify: left;
 
@@ -72,7 +72,7 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
-  --fab-prompt-shadow:
+  --mnml-prompt-shadow:
     0 24px 64px rgb(24 24 27 / 14%),
     0 4px 16px rgb(24 24 27 / 6%);
 }
@@ -100,7 +100,7 @@ body {
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
-  --fab-prompt-shadow:
+  --mnml-prompt-shadow:
     0 28px 72px rgb(0 0 0 / 42%),
     0 4px 18px rgb(0 0 0 / 20%);
 }
@@ -159,13 +159,13 @@ body.theme-light.is-translucent:not(.is-fullscreen)
 /* The filename is context, not the document's loudest heading. */
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--fab-note-identity-font);
-  font-size: var(--fab-note-identity-size);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
   letter-spacing: -0.01em;
   opacity: 0.72;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 .inline-title:hover,
@@ -178,13 +178,13 @@ body.theme-light.is-translucent:not(.is-fullscreen)
 /* Keep the filename in the tab title bar quiet but legible. */
 .view-header-title-container {
   opacity: 0.82;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .view-header-title-parent,
 .view-header-title {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
+  font-family: var(--mnml-note-identity-font);
   font-size: var(--file-header-font-size);
   font-weight: var(--file-header-font-weight);
   letter-spacing: -0.01em;
@@ -193,7 +193,7 @@ body.theme-light.is-translucent:not(.is-fullscreen)
 .view-header-title-parent .view-header-breadcrumb,
 .view-header-title-parent .view-header-breadcrumb-separator {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
+  font-family: var(--mnml-note-identity-font);
   font-size: var(--file-header-font-size);
 }
 
@@ -221,8 +221,8 @@ body.theme-light.is-translucent:not(.is-fullscreen)
 /* Reduce document chrome contrast so the note remains the visual focus. */
 .workspace .mod-root .workspace-tab-header-inner-title {
   color: var(--text-muted);
-  font-family: var(--fab-note-identity-font);
-  font-size: var(--fab-note-identity-size);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
   font-weight: 450;
 }
 
@@ -265,8 +265,8 @@ body:not(.is-mobile) .workspace .mod-root
   opacity: 0;
   pointer-events: none;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile) .workspace .mod-root
@@ -408,7 +408,7 @@ body:not(.is-mobile)
   --icon-size: 13px;
 
   opacity: 0.72;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 .embedded-backlinks .nav-buttons-container:is(:hover, :focus-within) {
@@ -423,7 +423,7 @@ body:not(.is-mobile) .prompt {
   --search-clear-button-color: var(--text-faint);
 
   border-radius: 14px;
-  box-shadow: var(--fab-prompt-shadow);
+  box-shadow: var(--mnml-prompt-shadow);
 }
 
 body:not(.is-mobile) .prompt-input-container {
@@ -452,8 +452,8 @@ body:not(.is-mobile) .prompt-instructions {
 body:not(.is-mobile) .prompt-input-container .search-input-clear-button {
   opacity: 0.58;
   transition:
-    color var(--fab-transition-duration) ease,
-    opacity var(--fab-transition-duration) ease;
+    color var(--mnml-transition-duration) ease,
+    opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile)
@@ -472,7 +472,7 @@ body:not(.is-mobile)
 /* Keep document statistics available without making them permanent chrome. */
 body:not(.is-mobile) .status-bar {
   opacity: 0;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile) .status-bar:is(:hover, :focus-within) {
@@ -481,7 +481,7 @@ body:not(.is-mobile) .status-bar:is(:hover, :focus-within) {
 
 body:not(.is-mobile) .status-bar-item.plugin-sync .sync-status-icon {
   opacity: 0;
-  transition: opacity var(--fab-transition-duration) ease;
+  transition: opacity var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile)

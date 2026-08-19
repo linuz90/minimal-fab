@@ -1,6 +1,6 @@
 # Minimal upstream
 
-Minimal Fab is based on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (`@kepano`).
+mnml is based on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (`@kepano`).
 
 - Version: `9.0.2`
 - Minimum Obsidian: `1.13.0`

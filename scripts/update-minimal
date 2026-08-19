@@ -12,7 +12,7 @@ case "$minimal_ref" in
     ;;
 esac
 
-update_temp=$(mktemp -d /tmp/fab-minimal-update.XXXXXX)
+update_temp=$(mktemp -d /tmp/mnml-minimal-update.XXXXXX)
 cleanup() {
   rm -rf "$update_temp"
 }
@@ -41,7 +41,7 @@ minimal_app_version="$minimal_app_version" perl -0pi -e '
 
 {
   printf '# Minimal upstream\n\n'
-  printf "Minimal Fab is based on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (\`@kepano\`).\n\n"
+  printf "mnml is based on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (\`@kepano\`).\n\n"
   printf '%s\n' "- Version: \`$minimal_version\`"
   printf '%s\n' "- Minimum Obsidian: \`$minimal_app_version\`"
   printf '%s\n' "- Ref: \`$minimal_ref\`"
@@ -54,4 +54,4 @@ minimal_app_version="$minimal_app_version" perl -0pi -e '
 
 "$theme_root/scripts/build-theme"
 
-printf 'Updated Minimal Fab to Minimal %s (%s).\n' "$minimal_version" "$minimal_commit"
+printf 'Updated mnml to Minimal %s (%s).\n' "$minimal_version" "$minimal_commit"

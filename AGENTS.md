@@ -1,8 +1,8 @@
-# Minimal Fab — Agent Guide
+# mnml — Agent Guide
 
 ## What this is
 
-A custom Obsidian theme based on Minimal. Source of truth lives in this repo (`~/Code/minimal-fab/`).
+A custom Obsidian theme based on Minimal. Source of truth lives in this repo (`~/Code/obsidian-mnml/`).
 
 ## Docs
 
@@ -10,7 +10,7 @@ Official theme development guide: https://docs.obsidian.md/Themes/App+themes/Bui
 
 Key rules:
 - `upstream/minimal.css` is the pinned upstream base; do not edit it
-- Minimal Fab changes go in `src/fab.css`
+- mnml changes go in `src/mnml.css`
 - Run `pnpm install` once, then `pnpm build` after CSS changes; `theme.css` is generated and standards-normalized
 - Run `pnpm check` before committing; it verifies generated-file drift and the official Obsidian Stylelint config
 - `manifest.json` defines the theme name, version, and author
@@ -19,10 +19,10 @@ Key rules:
 ## File structure
 
 ```
-manifest.json          — Theme metadata (name must be "Minimal Fab")
+manifest.json          — Theme metadata (name must be "mnml")
 versions.json          — Published theme version to minimum Obsidian mapping
 theme.css              — Generated theme loaded by Obsidian
-src/fab.css            — Minimal Fab's design layer
+src/mnml.css           — mnml's design layer
 upstream/minimal.css   — Pinned Minimal base
 scripts/build-theme    — Rebuilds theme.css
 scripts/check-theme    — Verifies theme.css matches its sources
@@ -40,27 +40,27 @@ screenshots/           — Public preview assets
 Use a real theme directory containing file symlinks so Obsidian discovers it as a normal theme folder:
 
 ```
-{Vault}/.obsidian/themes/Minimal Fab/manifest.json -> ~/Code/minimal-fab/manifest.json
-{Vault}/.obsidian/themes/Minimal Fab/theme.css -> ~/Code/minimal-fab/theme.css
+{Vault}/.obsidian/themes/mnml/manifest.json -> ~/Code/obsidian-mnml/manifest.json
+{Vault}/.obsidian/themes/mnml/theme.css -> ~/Code/obsidian-mnml/theme.css
 ```
 
 Run `pnpm build`, then reload Obsidian with Cmd+R. Changes to `manifest.json` require a full restart.
 
 Run `scripts/update-minimal [tag-or-branch]` to update the pinned Minimal base. Review the upstream diff and the live theme before committing.
 
-Minimal's version and Minimal Fab's version are independent. When publishing an update, bump `manifest.json` deliberately and add its compatibility mapping to `versions.json`; the updater only synchronizes `minAppVersion`.
+Minimal's version and mnml's version are independent. When publishing an update, bump `manifest.json` deliberately and add its compatibility mapping to `versions.json`; the updater only synchronizes `minAppVersion`.
 
 To use in a new vault, symlink the repo:
 
 ```bash
-mkdir -p "/path/to/vault/.obsidian/themes/Minimal Fab"
-ln -s ~/Code/minimal-fab/manifest.json "/path/to/vault/.obsidian/themes/Minimal Fab/manifest.json"
-ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
+mkdir -p "/path/to/vault/.obsidian/themes/mnml"
+ln -s ~/Code/obsidian-mnml/manifest.json "/path/to/vault/.obsidian/themes/mnml/manifest.json"
+ln -s ~/Code/obsidian-mnml/theme.css "/path/to/vault/.obsidian/themes/mnml/theme.css"
 ```
 
 ## Design principles
 
-- Minimal owns Obsidian compatibility; keep Minimal Fab overrides small
+- Minimal owns Obsidian compatibility; keep mnml overrides small
 - Keep the vendored upstream byte-exact; normalize only the generated distribution
 - Vercel/gists.sh inspired: quiet, neutral, focused
 - Native system typography

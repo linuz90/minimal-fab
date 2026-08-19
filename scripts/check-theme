@@ -3,7 +3,7 @@
 set -eu
 
 theme_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
-check_temp=$(mktemp /tmp/minimal-fab-theme.XXXXXX.css)
+check_temp=$(mktemp /tmp/mnml-theme.XXXXXX.css)
 
 cleanup() {
   rm -f "$check_temp"
