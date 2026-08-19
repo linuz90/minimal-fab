@@ -23,6 +23,8 @@ Once Minimal Fab is listed, open **Settings → Appearance → Themes → Manage
 
 The folder name must exactly match the `name` in `manifest.json`.
 
+Minimal Fab requires Obsidian 1.13.0 or newer. On desktop, use installer version 1.2.7 or newer because the theme uses `color-mix()`.
+
 ### Development install
 
 Clone the repository and link the two files Obsidian loads:

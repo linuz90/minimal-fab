@@ -19,6 +19,7 @@ Key rules:
 
 ```
 manifest.json          — Theme metadata (name must be "Minimal Fab")
+versions.json          — Published theme version to minimum Obsidian mapping
 theme.css              — Generated theme loaded by Obsidian
 src/fab.css            — Minimal Fab's design layer
 upstream/minimal.css   — Pinned Minimal base
@@ -44,7 +45,7 @@ Run `scripts/build-theme`, then reload Obsidian with Cmd+R. Changes to `manifest
 
 Run `scripts/update-minimal [tag-or-branch]` to update the pinned Minimal base. Review the upstream diff and the live theme before committing.
 
-Minimal's version and Minimal Fab's version are independent. When publishing an update, bump `manifest.json` deliberately; the updater only synchronizes `minAppVersion`.
+Minimal's version and Minimal Fab's version are independent. When publishing an update, bump `manifest.json` deliberately and add its compatibility mapping to `versions.json`; the updater only synchronizes `minAppVersion`.
 
 To use in a new vault, symlink the repo:
 

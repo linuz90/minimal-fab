@@ -19,7 +19,7 @@ body {
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
   --fab-transition-duration: 120ms;
-  --fab-note-identity-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  --fab-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
   --fab-note-identity-size: 13px;
 
   /* Titles */
@@ -50,9 +50,9 @@ body {
 
 /* Codex-like surfaces: airy in light mode, layered and focused in dark mode. */
 .theme-light {
-  --bg1: #ffffff;
+  --bg1: #fff;
   --bg2: #fafafb;
-  --bg3: rgba(24, 24, 27, 0.055);
+  --bg3: rgb(24 24 27 / 5.5%);
   --ui1: #e5e5e7;
   --ui2: #d8d8dc;
   --ui3: #c9c9ce;
@@ -68,19 +68,19 @@ body {
   --ribbon-background: var(--bg2);
   --titlebar-background: var(--bg1);
   --titlebar-background-focused: var(--bg1);
-  --workspace-background-translucent: rgba(250, 250, 251, 0.76);
+  --workspace-background-translucent: rgb(250 250 251 / 76%);
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
   --fab-prompt-shadow:
-    0 24px 64px rgba(24, 24, 27, 0.14),
-    0 4px 16px rgba(24, 24, 27, 0.06);
+    0 24px 64px rgb(24 24 27 / 14%),
+    0 4px 16px rgb(24 24 27 / 6%);
 }
 
 .theme-dark {
-  --bg1: #111111;
+  --bg1: #111;
   --bg2: #242526;
-  --bg3: rgba(255, 255, 255, 0.085);
+  --bg3: rgb(255 255 255 / 8.5%);
   --ui1: #343538;
   --ui2: #444549;
   --ui3: #56575c;
@@ -96,17 +96,40 @@ body {
   --ribbon-background: var(--bg2);
   --titlebar-background: var(--bg1);
   --titlebar-background-focused: var(--bg1);
-  --workspace-background-translucent: rgba(24, 25, 26, 0.86);
+  --workspace-background-translucent: rgb(24 25 26 / 86%);
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
   --fab-prompt-shadow:
-    0 28px 72px rgba(0, 0, 0, 0.42),
-    0 4px 18px rgba(0, 0, 0, 0.2);
+    0 28px 72px rgb(0 0 0 / 42%),
+    0 4px 18px rgb(0 0 0 / 20%);
+}
+
+/* The translucent sidebar reads as one continuous material; only its edge
+   against the document needs separation. */
+body:not(.is-mobile)
+  .workspace-split.mod-left-split
+  .workspace-tab-header-container {
+  border-bottom: 0;
+}
+
+body:not(.is-mobile)
+  .workspace-split.mod-left-split
+  .workspace-sidedock-vault-profile {
+  border-top: 0;
+}
+
+/* Define tab variables before the translucency overrides that consume them. */
+.workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0.5px;
+  --minimal-tab-text-color: var(--text-muted);
+  --tab-text-color: var(--text-muted);
+  --tab-text-color-focused: var(--text-muted);
 }
 
 /* Let macOS vibrancy show through the sidebars while the writing surface and
-   its tab strip remain a single, opaque plane. */
+   its tab strip remain a single, opaque plane. Core marks these backgrounds
+   transparent with !important, so restoring the writing plane must match it. */
 body.is-translucent:not(.is-fullscreen) .titlebar,
 body.is-translucent:not(.is-fullscreen) .workspace-split.mod-root,
 body.is-translucent:not(.is-fullscreen)
@@ -129,22 +152,8 @@ body.is-translucent:not(.is-fullscreen) {
 
 body.theme-light.is-translucent:not(.is-fullscreen)
   .workspace-split.mod-root {
-  box-shadow: -8px 0 20px rgba(24, 24, 27, 0.055);
+  box-shadow: -8px 0 20px rgb(24 24 27 / 5.5%);
   z-index: 1;
-}
-
-/* The translucent sidebar reads as one continuous material; only its edge
-   against the document needs separation. */
-body:not(.is-mobile)
-  .workspace-split.mod-left-split
-  .workspace-tab-header-container {
-  border-bottom: 0;
-}
-
-body:not(.is-mobile)
-  .workspace-split.mod-left-split
-  .workspace-sidedock-vault-profile {
-  border-top: 0;
 }
 
 /* The filename is context, not the document's loudest heading. */
@@ -217,11 +226,11 @@ body:not(.is-mobile)
   font-weight: 450;
 }
 
-.workspace .mod-root .workspace-tabs:not(.mod-stacked) {
-  --tab-outline-width: 0.5px;
-  --minimal-tab-text-color: var(--text-muted);
-  --tab-text-color: var(--text-muted);
-  --tab-text-color-focused: var(--text-muted);
+.workspace .mod-root
+  .workspace-tab-header.is-active
+  .workspace-tab-header-inner-title {
+  color: var(--text-normal);
+  font-weight: 500;
 }
 
 .workspace .mod-root .workspace-tabs:not(.mod-stacked)
@@ -246,13 +255,6 @@ body:not(.is-mobile)
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:not(.is-active):hover {
   opacity: 1;
-}
-
-.workspace .mod-root
-  .workspace-tab-header.is-active
-  .workspace-tab-header-inner-title {
-  color: var(--text-normal);
-  font-weight: 500;
 }
 
 body:not(.is-mobile) .workspace .mod-root
@@ -296,6 +298,7 @@ body:not(.is-mobile) .workspace .mod-root
 /* Keep hierarchy in the spacing itself instead of drawing guide rails. */
 .nav-files-container {
   --nav-indentation-guide-width: 0px;
+
   padding-inline-start: var(--size-4-2);
 }
 
@@ -403,6 +406,7 @@ body:not(.is-mobile)
 
 .embedded-backlinks .nav-buttons-container {
   --icon-size: 13px;
+
   opacity: 0.72;
   transition: opacity var(--fab-transition-duration) ease;
 }
@@ -417,6 +421,7 @@ body:not(.is-mobile) .prompt {
   --prompt-border-color: var(--ui1);
   --prompt-border-width: 0.5px;
   --search-clear-button-color: var(--text-faint);
+
   border-radius: 14px;
   box-shadow: var(--fab-prompt-shadow);
 }
@@ -507,7 +512,7 @@ body:not(.is-mobile)
   border-radius: var(--radius-l);
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   body {
     --font-text-size: 16px;
     --line-width: 100%;
