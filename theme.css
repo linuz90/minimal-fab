@@ -8708,14 +8708,14 @@ settings:
 
 
 /* -------------------------------------------------------------------------
-   Fab overrides
+   Minimal Fab overrides
    ------------------------------------------------------------------------- */
 
 /*
-Fab overrides for the pinned Minimal base.
+Minimal Fab overrides for the pinned Minimal base.
 
 Keep this layer intentionally small. Minimal owns compatibility with Obsidian
-and community plugins; Fab should only define the visual character.
+and community plugins; Minimal Fab should only define the visual character.
 */
 
 body {
@@ -8910,8 +8910,10 @@ body:not(.is-mobile)
 }
 
 .view-header-title-parent .view-header-breadcrumb-separator::before {
-  content: "•";
-  font-size: var(--file-header-font-size);
+  content: "›";
+  color: var(--text-faint);
+  font-size: calc(var(--file-header-font-size) * 0.95);
+  opacity: 0.7;
 }
 
 .is-focused .workspace-leaf.mod-active .view-header-title {
@@ -9011,11 +9013,36 @@ body:not(.is-mobile) .workspace .mod-root
 /* Keep hierarchy in the spacing itself instead of drawing guide rails. */
 .nav-files-container {
   --nav-indentation-guide-width: 0px;
+  padding-inline-start: var(--size-4-2);
 }
 
 .nav-files-container .collapse-icon svg.svg-icon {
   width: 9px;
   height: 9px;
+}
+
+/* Empty-tab actions are quiet shortcuts, not primary calls to action. */
+body:not(.is-mobile)
+  .workspace-leaf-content[data-type="empty"]
+  .empty-state-action-list {
+  font-size: 13px;
+}
+
+body:not(.is-mobile)
+  .workspace-leaf-content[data-type="empty"]
+  .empty-state-action {
+  color: color-mix(in srgb, var(--text-muted) 75%, var(--text-faint));
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  line-height: 32px;
+}
+
+@media (hover: hover) {
+  body:not(.is-mobile)
+    .workspace-leaf-content[data-type="empty"]
+    .empty-state-action:hover {
+    color: var(--text-muted);
+  }
 }
 
 /* Smaller glyphs with unchanged hit targets, like modern desktop toolbars. */
@@ -9152,6 +9179,31 @@ body:not(.is-mobile)
 .metadata-container,
 .status-bar {
   color: var(--text-faint);
+}
+
+/* Keep document statistics available without making them permanent chrome. */
+body:not(.is-mobile) .status-bar {
+  opacity: 0;
+  transition: opacity var(--fab-transition-duration) ease;
+}
+
+body:not(.is-mobile) .status-bar:is(:hover, :focus-within) {
+  opacity: 1;
+}
+
+body:not(.is-mobile) .status-bar-item.plugin-sync .sync-status-icon {
+  opacity: 0;
+  transition: opacity var(--fab-transition-duration) ease;
+}
+
+body:not(.is-mobile)
+  :is(
+    .status-bar:hover .status-bar-item.plugin-sync,
+    .status-bar-item.plugin-sync:hover,
+    .status-bar-item.plugin-sync:focus-within
+  )
+  .sync-status-icon {
+  opacity: 1;
 }
 
 .markdown-rendered a,
