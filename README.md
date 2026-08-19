@@ -1,23 +1,12 @@
 # Minimal Fab
 
-A polished Obsidian theme built on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango, then refined into a calmer, more deliberate desktop experience inspired by the [Codex macOS app](https://openai.com/codex/).
-
-The name combines its Minimal foundation with **Fab**, Fabrizio's personal design layer.
+A polished Obsidian theme by [Fabrizio Rinaldi](https://x.com/linuz90), built on [Minimal](https://github.com/kepano/obsidian-minimal) by Steph Ango (`@kepano`), with a calmer, more native macOS interface inspired by the [Codex app](https://openai.com/codex/).
 
 ![Minimal Fab in light mode](./screenshots/minimal-fab.png)
 
-Minimal Fab keeps the compatibility and restraint of the original Minimal theme while giving the surrounding app more character: quieter chrome, cleaner hierarchy, subtle translucency, finer borders, compact controls, calmer titles, and more considered light and dark palettes.
+Minimal provides the design and compatibility foundation. Minimal Fab builds on it with **a cleaner palette, subtler iconography, quieter details, and a more native macOS feel.**
 
-Minimal Fab is a third-party community theme and is not affiliated with Obsidian or OpenAI.
-
-## Highlights
-
-- Refined light and dark palettes with a darker, more focused writing surface in dark mode
-- Translucent macOS sidebars inspired by Codex, with restrained dividers and shadows
-- Geist-first typography with native system fallbacks
-- Smaller, quieter note titles, tabs, breadcrumbs, toolbars, and status details
-- Polished command palette, quick switcher, backlinks, file tree, and empty-tab states
-- A small, readable override layer that can follow future Minimal releases
+This is a third-party community theme and is not affiliated with Obsidian or OpenAI.
 
 ## Install
 
@@ -65,7 +54,7 @@ Close Obsidian before a direct `data.json` edit, or reload it immediately afterw
 
 ## Typography
 
-Minimal Fab prefers [Geist](https://vercel.com/font) and Geist Mono when they are installed, then falls back to the native system fonts. The theme never downloads fonts or other assets at runtime.
+Minimal Fab uses Obsidian's native system font stacks for interface, text, editor, and monospace typography. The theme never downloads fonts or other assets at runtime.
 
 ## Development
 

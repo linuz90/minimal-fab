@@ -58,7 +58,7 @@ ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/
 
 - Minimal owns Obsidian compatibility; keep Minimal Fab overrides small
 - Vercel/gists.sh inspired: quiet, neutral, focused
-- Geist (sans) + Geist Mono typography
+- Native system typography
 - Comfortable line-height, restrained headings, subdued file titles
 - Reuse Minimal and Obsidian variables instead of hardcoded component colors
 - Keep distributable CSS private and offline: Community Directory themes may not load runtime assets from the network

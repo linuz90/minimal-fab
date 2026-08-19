@@ -7,10 +7,6 @@ and community plugins; Minimal Fab should only define the visual character.
 
 body {
   /* Typography */
-  --font-interface-theme: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-text-theme: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-editor-theme: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-monospace-theme: "Geist Mono", "SFMono-Regular", Consolas, monospace;
   --font-text-size: 15px;
   --line-height: 1.65;
   --line-height-normal: var(--line-height);
