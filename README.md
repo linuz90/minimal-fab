@@ -4,7 +4,7 @@ A polished Obsidian theme by [Fabrizio Rinaldi](https://x.com/linuz90), built on
 
 ![Minimal Fab in light mode](./screenshots/minimal-fab.png)
 
-Minimal provides the design and compatibility foundation. Minimal Fab builds on it with **a cleaner palette, subtler iconography, quieter details, and a more native macOS feel.**
+Minimal provides the design and compatibility foundation. Minimal Fab refines the app as a whole with **a cleaner palette, subtler iconography, quieter details, and a more native macOS feel.** Its generated distribution also passes Obsidian's official CSS scanner with no blocking errors while keeping the pinned upstream source intact.
 
 This is a third-party community theme and is not affiliated with Obsidian or OpenAI.
 
@@ -36,7 +36,7 @@ ln -s ~/Code/minimal-fab/manifest.json "/path/to/vault/.obsidian/themes/Minimal 
 ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
 ```
 
-Run `scripts/build-theme`, then reload Obsidian with `Cmd+R`. Changes to `manifest.json` require a full restart.
+Run `pnpm install` once, then `pnpm build` and reload Obsidian with `Cmd+R`. Changes to `manifest.json` require a full restart.
 
 ## Optional sidebar icons
 
@@ -60,14 +60,14 @@ Minimal Fab uses Obsidian's native system font stacks for interface, text, edito
 
 ## Development
 
-The distributable `theme.css` is generated from a pinned Minimal base plus Minimal Fab's focused override layer:
+The distributable `theme.css` is generated from a pinned Minimal base plus Minimal Fab's focused override layer, then normalized for Obsidian's official CSS scanner:
 
 ```text
-upstream/minimal.css + src/fab.css → theme.css
+upstream/minimal.css + src/fab.css → standards-normalized theme.css
 ```
 
 - Edit `src/fab.css`, never `upstream/minimal.css`.
-- Run `scripts/build-theme` after CSS changes.
+- Run `pnpm build` after CSS changes and `pnpm check` before committing.
 - Run `scripts/update-minimal [tag-or-branch]` to refresh Minimal, review the upstream diff, and rebuild.
 - Minimal's version and Minimal Fab's version are independent; publishing a Minimal Fab update requires an intentional `manifest.json` version bump.
 

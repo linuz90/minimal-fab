@@ -3,25 +3,34 @@
 set -eu
 
 theme_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
-theme_output="$theme_root/theme.css"
+theme_output=${1:-"$theme_root/theme.css"}
+theme_raw=$(mktemp "$theme_root/.theme.raw.css.XXXXXX")
 theme_temp=$(mktemp "$theme_root/.theme.css.XXXXXX")
 
 cleanup() {
-  rm -f "$theme_temp"
+  rm -f "$theme_raw" "$theme_temp"
 }
 trap cleanup EXIT HUP INT TERM
 
-cp "$theme_root/upstream/minimal.css" "$theme_temp"
+if [ ! -d "$theme_root/node_modules" ]; then
+  printf 'Missing development dependencies. Run pnpm install first.\n' >&2
+  exit 1
+fi
+
+cp "$theme_root/upstream/minimal.css" "$theme_raw"
 {
 printf '\n\n/* -------------------------------------------------------------------------\n'
 printf '   Minimal Fab overrides\n'
 printf '   ------------------------------------------------------------------------- */\n\n'
 cat "$theme_root/src/fab.css"
-} >> "$theme_temp"
+} >> "$theme_raw"
+
+node "$theme_root/scripts/normalize-theme.mjs" "$theme_raw" "$theme_temp"
 
 # mktemp creates mode 0600; the generated theme is a distributable asset.
 chmod 644 "$theme_temp"
 mv "$theme_temp" "$theme_output"
+rm -f "$theme_raw"
 trap - EXIT HUP INT TERM
 
 printf 'Built %s\n' "$theme_output"

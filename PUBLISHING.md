@@ -29,15 +29,13 @@ Once the entry exists, add Steph as a contributor in the Community Directory, li
 
 ## Official CSS scanner
 
-Obsidian's official [`stylelint-config-obsidianmd`](https://github.com/obsidianmd/stylelint-config) uses the same blocking rules as the Community Directory scanner. Run it against the final distributable `theme.css` before creating a release; warning-severity findings are advisory, but error-severity findings block submission.
+Obsidian's official [`stylelint-config-obsidianmd`](https://github.com/obsidianmd/stylelint-config) uses the same blocking rules as the Community Directory scanner. Run `pnpm check` against the final distributable before creating a release; warning-severity findings are advisory, but error-severity findings block submission.
 
-As of 2026-08-19, Minimal Fab's own override layer has no error-severity findings, but the compiled theme still inherits blocking findings from Minimal 9.0.2, which predates the official scanner. Do not create the `2.1.0` release or submit the theme until one of these is true:
+Minimal 9.0.2 predates the official scanner, so Minimal Fab keeps its vendored source byte-exact and standards-normalizes only the generated `theme.css`. The build preserves selector matching, specificity, media conditions, and source-order ties while modernizing syntax required by the scanner.
 
-1. Minimal publishes a lint-clean upstream revision and Minimal Fab updates to it.
-2. The inherited CSS is normalized without breaking the fork's behaviour or update path.
-3. Obsidian's directory reviewers confirm an accepted path after reviewing the branch scan.
+As of 2026-08-19, the final distributable has **zero error-severity findings**. Advisory warnings remain visible and must not be hidden with disable comments.
 
-Do not disable scanner rules to hide errors; the directory review checks the distributable independently.
+CI rebuilds the theme and runs the same official config on every push and pull request.
 
 ## Name
 
@@ -47,7 +45,7 @@ The directory-facing name is **Minimal Fab**. Obsidian's [manifest rules](https:
 
 1. Confirm `linuz90/minimal-fab` is public.
 2. Resolve the fork-policy requirement above.
-3. Resolve every error-severity finding from the official CSS scanner.
+3. Run `pnpm check` and confirm zero error-severity findings from the official CSS scanner.
 4. Confirm the default branch contains `README.md`, `LICENSE`, `manifest.json`, `theme.css`, `versions.json`, and both screenshots.
 5. Check that `manifest.json` has the final name, semantic version, minimum Obsidian version, and author details.
 6. Test both light and dark modes on the minimum supported Obsidian version and the current stable version.

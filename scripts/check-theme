@@ -1,0 +1,20 @@
+#!/bin/sh
+
+set -eu
+
+theme_root=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
+check_temp=$(mktemp /tmp/minimal-fab-theme.XXXXXX.css)
+
+cleanup() {
+  rm -f "$check_temp"
+}
+trap cleanup EXIT HUP INT TERM
+
+"$theme_root/scripts/build-theme" "$check_temp" >/dev/null
+
+if ! cmp -s "$check_temp" "$theme_root/theme.css"; then
+  printf 'theme.css is stale. Run pnpm build and commit the result.\n' >&2
+  exit 1
+fi
+
+printf 'theme.css matches its sources.\n'

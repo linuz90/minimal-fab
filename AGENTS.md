@@ -11,7 +11,8 @@ Official theme development guide: https://docs.obsidian.md/Themes/App+themes/Bui
 Key rules:
 - `upstream/minimal.css` is the pinned upstream base; do not edit it
 - Minimal Fab changes go in `src/fab.css`
-- Run `scripts/build-theme` after CSS changes; `theme.css` is generated
+- Run `pnpm install` once, then `pnpm build` after CSS changes; `theme.css` is generated and standards-normalized
+- Run `pnpm check` before committing; it verifies generated-file drift and the official Obsidian Stylelint config
 - `manifest.json` defines the theme name, version, and author
 - The folder name inside `.obsidian/themes/` must exactly match the `name` field in `manifest.json`
 
@@ -24,6 +25,8 @@ theme.css              — Generated theme loaded by Obsidian
 src/fab.css            — Minimal Fab's design layer
 upstream/minimal.css   — Pinned Minimal base
 scripts/build-theme    — Rebuilds theme.css
+scripts/check-theme    — Verifies theme.css matches its sources
+scripts/normalize-theme.mjs — Produces scanner-compliant CSS without editing upstream
 scripts/update-minimal — Fetches Minimal and rebuilds the theme
 UPSTREAM.md            — Minimal version and update notes
 LICENSE-Minimal        — Upstream MIT license
@@ -41,7 +44,7 @@ Use a real theme directory containing file symlinks so Obsidian discovers it as 
 {Vault}/.obsidian/themes/Minimal Fab/theme.css -> ~/Code/minimal-fab/theme.css
 ```
 
-Run `scripts/build-theme`, then reload Obsidian with Cmd+R. Changes to `manifest.json` require a full restart.
+Run `pnpm build`, then reload Obsidian with Cmd+R. Changes to `manifest.json` require a full restart.
 
 Run `scripts/update-minimal [tag-or-branch]` to update the pinned Minimal base. Review the upstream diff and the live theme before committing.
 
@@ -58,6 +61,7 @@ ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/
 ## Design principles
 
 - Minimal owns Obsidian compatibility; keep Minimal Fab overrides small
+- Keep the vendored upstream byte-exact; normalize only the generated distribution
 - Vercel/gists.sh inspired: quiet, neutral, focused
 - Native system typography
 - Comfortable line-height, restrained headings, subdued file titles
