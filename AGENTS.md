@@ -2,7 +2,7 @@
 
 ## What this is
 
-A custom Obsidian theme based on Minimal. Source of truth lives in this repo (`~/Code/fab-obsidian-theme/`).
+A custom Obsidian theme based on Minimal. Source of truth lives in this repo (`~/Code/minimal-fab/`).
 
 ## Docs
 
@@ -36,8 +36,8 @@ screenshots/           — Public preview assets
 Use a real theme directory containing file symlinks so Obsidian discovers it as a normal theme folder:
 
 ```
-{Vault}/.obsidian/themes/Minimal Fab/manifest.json -> ~/Code/fab-obsidian-theme/manifest.json
-{Vault}/.obsidian/themes/Minimal Fab/theme.css -> ~/Code/fab-obsidian-theme/theme.css
+{Vault}/.obsidian/themes/Minimal Fab/manifest.json -> ~/Code/minimal-fab/manifest.json
+{Vault}/.obsidian/themes/Minimal Fab/theme.css -> ~/Code/minimal-fab/theme.css
 ```
 
 Run `scripts/build-theme`, then reload Obsidian with Cmd+R. Changes to `manifest.json` require a full restart.
@@ -50,8 +50,8 @@ To use in a new vault, symlink the repo:
 
 ```bash
 mkdir -p "/path/to/vault/.obsidian/themes/Minimal Fab"
-ln -s ~/Code/fab-obsidian-theme/manifest.json "/path/to/vault/.obsidian/themes/Minimal Fab/manifest.json"
-ln -s ~/Code/fab-obsidian-theme/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
+ln -s ~/Code/minimal-fab/manifest.json "/path/to/vault/.obsidian/themes/Minimal Fab/manifest.json"
+ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
 ```
 
 ## Design principles

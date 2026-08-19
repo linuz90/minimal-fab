@@ -21,7 +21,7 @@ Ask **Steph Ango (`@kepano`)**, the author and maintainer of Minimal. The cleane
 
 Suggested request:
 
-> Hi Steph, I built [Minimal Fab](https://github.com/linuz90/fab-obsidian-theme), a maintained visual fork of Minimal with a smaller Fab override layer inspired by the Codex macOS app. It preserves Minimal's MIT notice in the distributed CSS, links your Buy Me a Coffee page, and credits you as the original author. Obsidian's Community Directory requires publicly verifiable approval for forks. Are you comfortable with Minimal Fab being submitted to the directory as a Minimal-based theme, with you credited as a contributor?
+> Hi Steph, I built [Minimal Fab](https://github.com/linuz90/minimal-fab), a maintained visual fork of Minimal with a smaller Fab override layer inspired by the Codex macOS app. It preserves Minimal's MIT notice in the distributed CSS, links your Buy Me a Coffee page, and credits you as the original author. Obsidian's Community Directory requires publicly verifiable approval for forks. Are you comfortable with Minimal Fab being submitted to the directory as a Minimal-based theme, with you credited as a contributor?
 
 Do not submit until the answer is public and clearly affirmative.
 
@@ -31,7 +31,7 @@ The directory-facing name is **Minimal Fab**. Obsidian's [manifest rules](https:
 
 ## Initial submission checklist
 
-1. Make `linuz90/fab-obsidian-theme` public.
+1. Make `linuz90/minimal-fab` public.
 2. Resolve the fork-policy requirement above.
 3. Confirm the default branch contains `README.md`, `LICENSE`, `manifest.json`, `theme.css`, and both screenshots.
 4. Check that `manifest.json` has the final name, semantic version, minimum Obsidian version, and author details.

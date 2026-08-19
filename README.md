@@ -27,7 +27,7 @@ Once Minimal Fab is listed, open **Settings → Appearance → Themes → Manage
 
 ### Manually from a GitHub release
 
-1. Download `manifest.json` and `theme.css` from the [latest GitHub release](https://github.com/linuz90/fab-obsidian-theme/releases/latest).
+1. Download `manifest.json` and `theme.css` from the [latest GitHub release](https://github.com/linuz90/minimal-fab/releases/latest).
 2. Create `<your-vault>/.obsidian/themes/Minimal Fab/`.
 3. Put both files inside that folder.
 4. Restart Obsidian, then select **Minimal Fab** in **Settings → Appearance → Themes**.
@@ -39,10 +39,10 @@ The folder name must exactly match the `name` in `manifest.json`.
 Clone the repository and link the two files Obsidian loads:
 
 ```bash
-git clone https://github.com/linuz90/fab-obsidian-theme.git ~/Code/fab-obsidian-theme
+git clone https://github.com/linuz90/minimal-fab.git ~/Code/minimal-fab
 mkdir -p "/path/to/vault/.obsidian/themes/Minimal Fab"
-ln -s ~/Code/fab-obsidian-theme/manifest.json "/path/to/vault/.obsidian/themes/Minimal Fab/manifest.json"
-ln -s ~/Code/fab-obsidian-theme/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
+ln -s ~/Code/minimal-fab/manifest.json "/path/to/vault/.obsidian/themes/Minimal Fab/manifest.json"
+ln -s ~/Code/minimal-fab/theme.css "/path/to/vault/.obsidian/themes/Minimal Fab/theme.css"
 ```
 
 Run `scripts/build-theme`, then reload Obsidian with `Cmd+R`. Changes to `manifest.json` require a full restart.
