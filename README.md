@@ -25,6 +25,8 @@ The folder name must exactly match the `name` in `manifest.json`.
 
 mnml requires Obsidian 1.13.0 or newer. On desktop, use installer version 1.2.7 or newer because the theme uses `color-mix()`.
 
+For the closest match to the screenshots on macOS, enable **Translucent window** under **Settings → Appearance → Advanced**. mnml works normally without translucency.
+
 ### Development install
 
 Clone the repository and link the two files Obsidian loads:

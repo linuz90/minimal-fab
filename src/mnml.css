@@ -19,7 +19,9 @@ body {
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
   --mnml-transition-duration: 120ms;
-  --mnml-note-identity-font: -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", sans-serif;
+  --mnml-note-identity-font:
+    -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue",
+    sans-serif;
   --mnml-note-identity-size: 13px;
 
   /* Titles */
@@ -53,7 +55,7 @@ body {
   --bg1: #fff;
   --bg2: #fafafb;
   --bg3: rgb(24 24 27 / 5.5%);
-  --ui1: #e5e5e7;
+  --ui1: rgb(0 0 0 / 10%);
   --ui2: #d8d8dc;
   --ui3: #c9c9ce;
   --tx1: #29292d;
@@ -71,17 +73,17 @@ body {
   --workspace-background-translucent: rgb(250 250 251 / 76%);
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
+  --tab-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
   --mnml-prompt-shadow:
-    0 24px 64px rgb(24 24 27 / 14%),
-    0 4px 16px rgb(24 24 27 / 6%);
+    0 24px 64px rgb(24 24 27 / 14%), 0 4px 16px rgb(24 24 27 / 6%);
 }
 
 .theme-dark {
   --bg1: #111;
   --bg2: #242526;
   --bg3: rgb(255 255 255 / 8.5%);
-  --ui1: #343538;
+  --ui1: rgb(255 255 255 / 12%);
   --ui2: #444549;
   --ui3: #56575c;
   --tx1: #eeeeef;
@@ -99,10 +101,10 @@ body {
   --workspace-background-translucent: rgb(24 25 26 / 86%);
   --divider-color: var(--ui1);
   --frame-divider-color: var(--ui1);
+  --tab-divider-color: var(--ui1);
   --tab-outline-color: var(--ui1);
   --mnml-prompt-shadow:
-    0 28px 72px rgb(0 0 0 / 42%),
-    0 4px 18px rgb(0 0 0 / 20%);
+    0 28px 72px rgb(0 0 0 / 42%), 0 4px 18px rgb(0 0 0 / 20%);
 }
 
 /* The translucent sidebar reads as one continuous material; only its edge
@@ -150,9 +152,8 @@ body.is-translucent:not(.is-fullscreen) {
   --divider-color: var(--tab-outline-color);
 }
 
-body.theme-light.is-translucent:not(.is-fullscreen)
-  .workspace-split.mod-root {
-  box-shadow: -8px 0 20px rgb(24 24 27 / 5.5%);
+body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
+  box-shadow: -8px 0 20px rgb(0 0 0 / 3%);
   z-index: 1;
 }
 
@@ -226,38 +227,47 @@ body.theme-light.is-translucent:not(.is-fullscreen)
   font-weight: 450;
 }
 
-.workspace .mod-root
+.workspace
+  .mod-root
   .workspace-tab-header.is-active
   .workspace-tab-header-inner-title {
   color: var(--text-normal);
   font-weight: 500;
 }
 
-.workspace .mod-root .workspace-tabs:not(.mod-stacked)
+.workspace
+  .mod-root
+  .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:not(.is-active)
   .workspace-tab-header-inner-title {
   color: var(--text-muted);
 }
 
-.workspace .mod-root
+.workspace
+  .mod-root
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:not(.is-active) {
   opacity: 0.78;
 }
 
-.workspace .mod-root .workspace-tabs:not(.mod-stacked)
+.workspace
+  .mod-root
+  .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:not(.is-active):hover
   .workspace-tab-header-inner-title {
   color: var(--text-normal);
 }
 
-.workspace .mod-root
+.workspace
+  .mod-root
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:not(.is-active):hover {
   opacity: 1;
 }
 
-body:not(.is-mobile) .workspace .mod-root
+body:not(.is-mobile)
+  .workspace
+  .mod-root
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header
   .workspace-tab-header-inner-close-button {
@@ -269,7 +279,9 @@ body:not(.is-mobile) .workspace .mod-root
     opacity var(--mnml-transition-duration) ease;
 }
 
-body:not(.is-mobile) .workspace .mod-root
+body:not(.is-mobile)
+  .workspace
+  .mod-root
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header:is(:hover, :focus-within)
   .workspace-tab-header-inner-close-button {
@@ -277,7 +289,9 @@ body:not(.is-mobile) .workspace .mod-root
   pointer-events: auto;
 }
 
-body:not(.is-mobile) .workspace .mod-root
+body:not(.is-mobile)
+  .workspace
+  .mod-root
   .workspace-tabs:not(.mod-stacked)
   .workspace-tab-header
   .workspace-tab-header-inner-close-button:hover {
@@ -375,9 +389,7 @@ body:not(.is-mobile)
   letter-spacing: -0.01em;
 }
 
-.embedded-backlinks
-  .backlink-pane
-  > .tree-item-self.is-clickable.is-collapsed {
+.embedded-backlinks .backlink-pane > .tree-item-self.is-clickable.is-collapsed {
   color: var(--text-faint);
 }
 
@@ -394,11 +406,7 @@ body:not(.is-mobile)
   font-weight: 500;
 }
 
-.embedded-backlinks
-  .backlink-pane
-  .search-result
-  .collapse-icon
-  svg.svg-icon {
+.embedded-backlinks .backlink-pane .search-result .collapse-icon svg.svg-icon {
   width: 8px;
   height: 8px;
   stroke-width: 3px;
