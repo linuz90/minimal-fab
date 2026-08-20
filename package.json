@@ -4,7 +4,8 @@
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "scripts/build-theme",
-    "check": "scripts/check-theme && pnpm run lint",
+    "check": "scripts/check-theme && pnpm run check:compatibility && pnpm run lint",
+    "check:compatibility": "node scripts/check-compatibility.mjs",
     "lint": "stylelint theme.css --config stylelint.config.mjs"
   },
   "devDependencies": {

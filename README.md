@@ -60,6 +60,12 @@ Close Obsidian before a direct `data.json` edit, or reload it immediately afterw
 
 mnml uses Obsidian's native system font stacks for interface, text, editor, and monospace typography. The theme never downloads fonts or other assets at runtime.
 
+## Minimal customization compatibility
+
+mnml supports [Minimal Theme Settings](https://github.com/kepano/obsidian-minimal-settings) and [Style Settings](https://github.com/community-archive/obsidian-style-settings). Enabling Minimal Theme Settings with its default color schemes preserves mnml's palette; choosing another color scheme or background contrast mode intentionally changes it. Feature, layout, media, and typography controls remain available.
+
+Style Settings discovers the customization metadata inherited from Minimal. Values changed there intentionally override mnml's defaults.
+
 ## Development
 
 The distributable `theme.css` is generated from a pinned Minimal base plus mnml's focused override layer, then normalized for Obsidian's official CSS scanner:

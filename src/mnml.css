@@ -36,9 +36,9 @@ body {
   --file-header-justify: left;
 
   /* Headings stay distinct without competing with the note. */
-  --h1-size: 1.35em;
-  --h2-size: 1.18em;
-  --h3-size: 1.05em;
+  --h1-size: 1.45em;
+  --h2-size: 1.25em;
+  --h3-size: 1.1em;
   --h4-size: 1em;
   --h5-size: 0.9em;
   --h6-size: 0.85em;
@@ -50,8 +50,10 @@ body {
   --h6-weight: 500;
 }
 
-/* Codex-like surfaces: airy in light mode, layered and focused in dark mode. */
-.theme-light {
+/* Minimal Theme Settings adds a default-scheme class as soon as it loads. Keep
+   that no-op choice on mnml's palette; other scheme classes remain opt-in. */
+.theme-light,
+.theme-light.minimal-default-light {
   --bg1: #fff;
   --bg2: #fafafb;
   --bg3: rgb(24 24 27 / 5.5%);
@@ -62,6 +64,10 @@ body {
   --tx2: #707177;
   --tx3: #a3a4aa;
   --tx4: #55565c;
+}
+
+/* Codex-like surfaces: airy in light mode, layered and focused in dark mode. */
+.theme-light {
   --background-primary: var(--bg1);
   --background-primary-alt: var(--bg1);
   --background-secondary: var(--bg2);
@@ -79,7 +85,8 @@ body {
     0 24px 64px rgb(24 24 27 / 14%), 0 4px 16px rgb(24 24 27 / 6%);
 }
 
-.theme-dark {
+.theme-dark,
+.theme-dark.minimal-default-dark:not(.minimal-dark-black) {
   --bg1: #111;
   --bg2: #242526;
   --bg3: rgb(255 255 255 / 8.5%);
@@ -90,6 +97,9 @@ body {
   --tx2: #a8a9ad;
   --tx3: #747579;
   --tx4: #c5c6c8;
+}
+
+.theme-dark {
   --background-primary: var(--bg1);
   --background-primary-alt: var(--bg1);
   --background-secondary: var(--bg2);
@@ -305,15 +315,23 @@ body:not(.is-mobile)
   font-size: 14px;
 }
 
-.nav-file-title.is-active {
-  font-weight: 500;
-}
-
 /* Keep hierarchy in the spacing itself instead of drawing guide rails. */
 .nav-files-container {
   --nav-indentation-guide-width: 0px;
+  --nav-item-weight: var(--font-normal);
+  --nav-item-weight-hover: var(--font-normal);
+  --nav-item-weight-active: var(--font-normal);
 
   padding-inline-start: var(--size-4-2);
+}
+
+/* Core keeps a clicked file in its roving focus state. Its selected background
+   is enough feedback; non-active items retain the ring for keyboard traversal. */
+body:not(.is-phone)
+  .workspace-leaf.mod-active
+  .nav-files-container
+  .nav-file-title.is-active.has-focus:not(.is-being-renamed) {
+  box-shadow: none;
 }
 
 .nav-files-container .collapse-icon svg.svg-icon {
@@ -374,6 +392,13 @@ body:not(.is-mobile)
     .workspace-drawer-vault-switcher-icon
   ) {
   --icon-size: 14px;
+}
+
+/* Labeled navigation establishes an icon column; keep the file toolbar on it. */
+body.labeled-nav:not(.is-mobile)
+  .workspace-leaf-content[data-type="file-explorer"]
+  .nav-buttons-container {
+  margin-inline-start: var(--size-2-1);
 }
 
 /* Embedded backlinks are supporting context, not another document heading. */

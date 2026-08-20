@@ -51,11 +51,12 @@ The directory-facing name is **mnml**. Obsidian's [manifest rules](https://docs.
 4. Confirm the default branch contains `README.md`, `LICENSE`, `manifest.json`, `theme.css`, `versions.json`, and both screenshots.
 5. Check that `manifest.json` has the final name, semantic version, minimum Obsidian version, and author details.
 6. Test both light and dark modes on the minimum supported Obsidian version and the current stable version.
-7. Create a GitHub release whose tag exactly matches the `version` in `manifest.json` without a `v` prefix, for example `2.1.0`.
-8. Attach `manifest.json` and `theme.css` to that release as binary release assets. Committing them to the repository is not enough.
-9. Sign in at [community.obsidian.md](https://community.obsidian.md), connect the GitHub account, open **Themes**, and select **New theme**.
-10. Submit the repository URL, use the optimized 512×288 `screenshots/mnml-store.png` as the screenshot path, and select both Light and Dark as supported modes.
-11. Accept the developer policies and address any automated review feedback. If a fix changes the release, bump the manifest version and publish a matching new release.
+7. Enable Minimal Theme Settings and confirm its default schemes preserve mnml, then test one alternate scheme, one contrast mode, and representative feature, layout, and typography controls. Verify Style Settings discovers all inherited settings blocks.
+8. Create a GitHub release whose tag exactly matches the `version` in `manifest.json` without a `v` prefix, for example `2.1.0`.
+9. Attach `manifest.json` and `theme.css` to that release as binary release assets. Committing them to the repository is not enough.
+10. Sign in at [community.obsidian.md](https://community.obsidian.md), connect the GitHub account, open **Themes**, and select **New theme**.
+11. Submit the repository URL, use the optimized 512×288 `screenshots/mnml-store.png` as the screenshot path, and select both Light and Dark as supported modes.
+12. Accept the developer policies and address any automated review feedback. If a fix changes the release, bump the manifest version and publish a matching new release.
 
 The official process is documented in [Submit your theme](https://docs.obsidian.md/themes/app-themes/submit-theme). The directory reads `manifest.json` from the default branch, but installs `manifest.json` and `theme.css` from the matching GitHub release.
 

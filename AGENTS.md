@@ -13,6 +13,8 @@ Key rules:
 - mnml changes go in `src/mnml.css`
 - Run `pnpm install` once, then `pnpm build` after CSS changes; `theme.css` is generated and standards-normalized
 - Run `pnpm check` before committing; it verifies generated-file drift and the official Obsidian Stylelint config
+- Preserve Minimal's Style Settings metadata and Minimal Theme Settings feature classes
+- Minimal Theme Settings' default schemes must retain mnml's palette; explicit presets and contrast modes remain opt-in
 - `manifest.json` defines the theme name, version, and author
 - The folder name inside `.obsidian/themes/` must exactly match the `name` field in `manifest.json`
 
@@ -26,6 +28,7 @@ src/mnml.css           — mnml's design layer
 upstream/minimal.css   — Pinned Minimal base
 scripts/build-theme    — Rebuilds theme.css
 scripts/check-theme    — Verifies theme.css matches its sources
+scripts/check-compatibility.mjs — Guards Minimal plugin compatibility contracts
 scripts/normalize-theme.mjs — Produces scanner-compliant CSS without editing upstream
 scripts/update-minimal — Fetches Minimal and rebuilds the theme
 UPSTREAM.md            — Minimal version and update notes
