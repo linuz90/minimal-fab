@@ -1319,13 +1319,11 @@ body {
 
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--mnml-note-identity-font);
-  font-size: var(--mnml-note-identity-size);
+  font-family: var(--inline-title-font);
+  font-size: var(--inline-title-size);
+  color: var(--inline-title-color);
   letter-spacing: -0.01em;
-  opacity: 0.72;
-  transition:
-    color var(--mnml-transition-duration) ease,
-    opacity var(--mnml-transition-duration) ease;
+  transition: color var(--mnml-transition-duration) ease;
 }
 
 .view-header-title-container {
@@ -3578,7 +3576,6 @@ body .table-view-table > thead > tr > th {
 .inline-title:focus,
 .inline-title:focus-within {
   color: var(--text-normal);
-  opacity: 1;
 }
 
 .view-header-title-parent .view-header-breadcrumb,

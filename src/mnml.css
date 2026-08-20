@@ -165,23 +165,23 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
   z-index: 1;
 }
 
-/* The filename is context, not the document's loudest heading. */
+/* The filename is context, not the document's loudest heading. The quiet
+   defaults live in the --inline-title-* variables at the top of this file;
+   consume them here rather than restating them, so Minimal's Style Settings
+   controls for title font, size, weight, and color keep working. */
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--mnml-note-identity-font);
-  font-size: var(--mnml-note-identity-size);
+  font-family: var(--inline-title-font);
+  font-size: var(--inline-title-size);
+  color: var(--inline-title-color);
   letter-spacing: -0.01em;
-  opacity: 0.72;
-  transition:
-    color var(--mnml-transition-duration) ease,
-    opacity var(--mnml-transition-duration) ease;
+  transition: color var(--mnml-transition-duration) ease;
 }
 
 .inline-title:hover,
 .inline-title:focus,
 .inline-title:focus-within {
   color: var(--text-normal);
-  opacity: 1;
 }
 
 /* Keep the filename in the tab title bar quiet but legible. */
