@@ -5,6 +5,38 @@ Keep this layer intentionally small. Minimal owns compatibility with Obsidian
 and community plugins; mnml should only define the visual character.
 */
 
+/* @settings
+
+name: mnml
+id: mnml-style
+settings:
+	-
+		id: mnml-tab-divider-hidden
+		title: Hide the tab bar divider
+		description: Removes the hairline between the tab strip and the note. The Modern tab style already hides it.
+		type: class-toggle
+	-
+		id: mnml-title-prominent
+		title: Prominent note title
+		description: Gives the inline note title full text contrast instead of mnml's muted default. Size and weight stay under Minimal's own inline title controls.
+		type: class-toggle
+	-
+		id: mnml-round-modal-buttons
+		title: Round modal buttons
+		description: Draws the modal close and header buttons as circular targets that only show a background on hover or keyboard focus.
+		type: class-toggle
+	-
+		id: mnml-sidebar-scroll-fade
+		title: Fade sidebar scroll edges
+		description: Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary. Adds a little breathing room at both ends.
+		type: class-toggle
+	-
+		id: mnml-note-scroll-fade
+		title: Fade the note scroll edge
+		description: Softens the seam where a scrolling note passes under its header.
+		type: class-toggle
+*/
+
 body {
   /* Typography */
   --font-text-size: 15px;
@@ -19,6 +51,8 @@ body {
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
   --mnml-transition-duration: 120ms;
+  --mnml-scroll-fade: 16px;
+  --mnml-modal-button-size: 26px;
   --mnml-note-identity-font:
     -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue",
     sans-serif;
@@ -129,6 +163,22 @@ body:not(.is-mobile)
   --tab-text-color-focused: var(--text-muted);
 }
 
+/* Minimal's Modern tabs are detached chips, so it turns the strip divider off.
+   The rule above has the same specificity and simply lands later, which put the
+   hairline back and re-attached the tabs to the note. Defer to the chosen tab
+   style instead. */
+body.tabs-modern .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
+/* Opt-in seamless tab strip for any tab style, mirroring the sidebar above. */
+body.mnml-tab-divider-hidden
+  .workspace
+  .mod-root
+  .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
 /* Let macOS vibrancy show through the sidebars while the writing surface and
    its tab strip remain a single, opaque plane. Core marks these backgrounds
    transparent with !important, so restoring the writing plane must match it. */
@@ -157,23 +207,30 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
   z-index: 1;
 }
 
-/* The filename is context, not the document's loudest heading. */
+/* The filename is context, not the document's loudest heading. The quiet
+   defaults live in the --inline-title-* variables at the top of this file;
+   consume them here rather than restating them, so Minimal's Style Settings
+   controls for title font, size, weight, and color keep working. */
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--mnml-note-identity-font);
-  font-size: var(--mnml-note-identity-size);
+  font-family: var(--inline-title-font);
+  font-size: var(--inline-title-size);
+  color: var(--inline-title-color);
   letter-spacing: -0.01em;
-  opacity: 0.72;
-  transition:
-    color var(--mnml-transition-duration) ease,
-    opacity var(--mnml-transition-duration) ease;
+  transition: color var(--mnml-transition-duration) ease;
 }
 
 .inline-title:hover,
 .inline-title:focus,
 .inline-title:focus-within {
   color: var(--text-normal);
-  opacity: 1;
+}
+
+/* Opt out of the muted title for readers who want the filename to carry the
+   page. Colour only: size and weight stay under Minimal's own Style Settings
+   controls, so this never overrides a value picked there. */
+body.mnml-title-prominent {
+  --inline-title-color: var(--text-normal);
 }
 
 /* Keep the filename in the tab title bar quiet but legible. */
@@ -217,6 +274,31 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
 .view-header-title-container:focus-within,
 .view-header:hover .view-header-title-container {
   opacity: 1;
+}
+
+/* The note scrolls under its own header with the same hard boundary the file
+   list has, so give the seam the same fade. Top only: the foot of a note ends
+   in backlinks and a status bar that should stay fully legible. */
+body.mnml-note-scroll-fade
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-content {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade)
+  );
+}
+
+/* A soft edge and a drawn edge are alternative answers to the same seam, so
+   the hairline stands down whenever the fade above is switched on. */
+body:not(.mnml-note-scroll-fade)
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-header {
+  border-bottom: var(--divider-width) solid var(--divider-color);
 }
 
 /* Reduce document chrome contrast so the note remains the visual focus. */
@@ -314,6 +396,23 @@ body:not(.is-mobile)
   --nav-indentation-guide-width: 0px;
 
   padding-inline-start: var(--size-4-2);
+}
+
+/* The file list is a scroll container, so its own overflow boundary slices rows
+   in half against the toolbar above and the vault profile below. A mask removes
+   pixels rather than painting over them, which is what keeps macOS vibrancy
+   intact behind the sidebar; an opaque overlay would flatten it. The fade
+   distance matches the block padding it adds, so a list sitting at rest has
+   nothing dimmed. */
+body.mnml-sidebar-scroll-fade .nav-files-container {
+  padding-block: var(--mnml-scroll-fade);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade),
+    #000 calc(100% - var(--mnml-scroll-fade)),
+    transparent 100%
+  );
 }
 
 .nav-files-container .collapse-icon svg.svg-icon {
@@ -471,10 +570,62 @@ body:not(.is-mobile)
   opacity: 1;
 }
 
+/* Modal dismiss and header controls as round targets, the way macOS draws a
+   sheet's own buttons. Squaring the box first keeps the circle a circle
+   whatever glyph or padding the core stylesheet gives these elements, and the
+   background only appears on interaction so a resting dialog stays quiet. */
+body.mnml-round-modal-buttons :is(.modal-close-button, .modal-header-button) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-self: center;
+  box-sizing: border-box;
+  width: var(--mnml-modal-button-size);
+  min-width: var(--mnml-modal-button-size);
+  max-width: var(--mnml-modal-button-size);
+  height: var(--mnml-modal-button-size);
+  min-height: var(--mnml-modal-button-size);
+  max-height: var(--mnml-modal-button-size);
+  padding: 0;
+  border: 0;
+  /* Obsidian gives its controls a squircle by declaring corner-shape from
+     --corner-shape, which turns a 50% radius into a superellipse rather than a
+     circle. Retarget the variable instead of the property: corner-shape is too
+     new for the pinned Stylelint, which rejects it as an unknown property and
+     fails the build. The squircle stays everywhere else. */
+  --corner-shape: round;
+
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--text-faint);
+  transition:
+    background-color var(--mnml-transition-duration) ease,
+    color var(--mnml-transition-duration) ease;
+}
+
+body.mnml-round-modal-buttons
+  :is(.modal-close-button, .modal-header-button):is(:hover, :focus-visible) {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
 /* Quiet document details, with stronger feedback only on interaction. */
 .metadata-container,
 .status-bar {
   color: var(--text-faint);
+}
+
+/* The properties heading sits immediately under the note title. At its default
+   size and weight it outranks that title, inverting the hierarchy the muted
+   inline title is meant to create. The container rule above only sets an
+   inherited color, which the heading's own color overrides. */
+.metadata-properties-heading,
+.metadata-properties-heading .metadata-properties-title {
+  color: var(--text-faint);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
+  font-weight: 500;
 }
 
 /* Keep document statistics available without making them permanent chrome. */

@@ -315,6 +315,8 @@ body {
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
   --mnml-transition-duration: 120ms;
+  --mnml-scroll-fade: 16px;
+  --mnml-modal-button-size: 26px;
   --mnml-note-identity-font:
     -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue",
     sans-serif;
@@ -1319,13 +1321,11 @@ body {
 
 .inline-title {
   padding-top: 0.75rem;
-  font-family: var(--mnml-note-identity-font);
-  font-size: var(--mnml-note-identity-size);
+  font-family: var(--inline-title-font);
+  font-size: var(--inline-title-size);
+  color: var(--inline-title-color);
   letter-spacing: -0.01em;
-  opacity: 0.72;
-  transition:
-    color var(--mnml-transition-duration) ease,
-    opacity var(--mnml-transition-duration) ease;
+  transition: color var(--mnml-transition-duration) ease;
 }
 
 .view-header-title-container {
@@ -1361,6 +1361,13 @@ body {
 .metadata-container,
 .status-bar {
   color: var(--text-faint);
+}
+
+.metadata-properties-heading {
+  color: var(--text-faint);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
+  font-weight: 500;
 }
 
 .cm-hmd-internal-link,
@@ -1719,6 +1726,10 @@ body [class~="kanban-plugin__item-form"] {
 body .cm-heading-marker {
   cursor: var(--cursor);
   padding-left: 10px;
+}
+
+body.mnml-title-prominent {
+  --inline-title-color: var(--text-normal);
 }
 
 .markdown-rendered a {
@@ -3578,7 +3589,6 @@ body .table-view-table > thead > tr > th {
 .inline-title:focus,
 .inline-title:focus-within {
   color: var(--text-normal);
-  opacity: 1;
 }
 
 .view-header-title-parent .view-header-breadcrumb,
@@ -3606,6 +3616,13 @@ body .table-view-table > thead > tr > th {
 
   opacity: 0.72;
   transition: opacity var(--mnml-transition-duration) ease;
+}
+
+.metadata-properties-heading .metadata-properties-title {
+  color: var(--text-faint);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
+  font-weight: 500;
 }
 
 .markdown-rendered .mod-header + div > * {
@@ -4085,6 +4102,17 @@ body.is-translucent:not(.is-fullscreen) {
   opacity: 0.7;
 }
 
+body.mnml-sidebar-scroll-fade .nav-files-container {
+  padding-block: var(--mnml-scroll-fade);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade),
+    #000 calc(100% - var(--mnml-scroll-fade)),
+    transparent 100%
+  );
+}
+
 body:not(.is-mobile)
   :is(
     .workspace-ribbon,
@@ -4118,6 +4146,37 @@ body:not(.is-mobile) .prompt-results {
 
 body:not(.is-mobile) .prompt-instructions {
   display: none;
+}
+
+body.mnml-round-modal-buttons :is(.modal-close-button, .modal-header-button) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-self: center;
+  box-sizing: border-box;
+  width: var(--mnml-modal-button-size);
+  min-width: var(--mnml-modal-button-size);
+  max-width: var(--mnml-modal-button-size);
+  height: var(--mnml-modal-button-size);
+  min-height: var(--mnml-modal-button-size);
+  max-height: var(--mnml-modal-button-size);
+  padding: 0;
+  border: 0;
+
+  /* Obsidian gives its controls a squircle by declaring corner-shape from
+     --corner-shape, which turns a 50% radius into a superellipse rather than a
+     circle. Retarget the variable instead of the property: corner-shape is too
+     new for the pinned Stylelint, which rejects it as an unknown property and
+     fails the build. The squircle stays everywhere else. */
+  --corner-shape: round;
+
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--text-faint);
+  transition:
+    background-color var(--mnml-transition-duration) ease,
+    color var(--mnml-transition-duration) ease;
 }
 
 body:not(.is-mobile) .status-bar {
@@ -6086,6 +6145,12 @@ body:not(.is-mobile) .prompt-input-container .search-input-clear-button {
   transition:
     color var(--mnml-transition-duration) ease,
     opacity var(--mnml-transition-duration) ease;
+}
+
+body.mnml-round-modal-buttons
+  :is(.modal-close-button, .modal-header-button):is(:hover, :focus-visible) {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
 }
 
 body:not(.is-mobile) .status-bar:is(:hover, :focus-within) {
@@ -8560,6 +8625,17 @@ body:not(.is-mobile) .nav-folder.mod-root > .nav-folder-title .nav-folder-title-
   width: 24px;
 }
 
+body.tabs-modern .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
+body.mnml-tab-divider-hidden
+  .workspace
+  .mod-root
+  .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
 body.is-translucent:not(.is-fullscreen)
   .workspace-split.mod-root
   .workspace-tabs,
@@ -9266,6 +9342,26 @@ body.minimal-focus-mode.show-view-header .mod-root .workspace-leaf .view-header:
 
 .labeled-nav.mod-macos:not(.hider-ribbon) .mod-left-split .mod-top .workspace-tab-header-container::before {
   border-bottom: var(--tab-outline-width) solid var(--tab-outline-color);
+}
+
+body.mnml-note-scroll-fade
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-content {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade)
+  );
+}
+
+body:not(.mnml-note-scroll-fade)
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-header {
+  border-bottom: var(--divider-width) solid var(--divider-color);
 }
 
 body:not(.is-mobile)
@@ -12110,4 +12206,36 @@ settings:
 		description: Turns off toolbar in editor on mobile
 		type: class-toggle
 
+*/
+
+/* @settings
+
+name: mnml
+id: mnml-style
+settings:
+	-
+		id: mnml-tab-divider-hidden
+		title: Hide the tab bar divider
+		description: Removes the hairline between the tab strip and the note. The Modern tab style already hides it.
+		type: class-toggle
+	-
+		id: mnml-title-prominent
+		title: Prominent note title
+		description: Gives the inline note title full text contrast instead of mnml's muted default. Size and weight stay under Minimal's own inline title controls.
+		type: class-toggle
+	-
+		id: mnml-round-modal-buttons
+		title: Round modal buttons
+		description: Draws the modal close and header buttons as circular targets that only show a background on hover or keyboard focus.
+		type: class-toggle
+	-
+		id: mnml-sidebar-scroll-fade
+		title: Fade sidebar scroll edges
+		description: Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary. Adds a little breathing room at both ends.
+		type: class-toggle
+	-
+		id: mnml-note-scroll-fade
+		title: Fade the note scroll edge
+		description: Softens the seam where a scrolling note passes under its header.
+		type: class-toggle
 */
