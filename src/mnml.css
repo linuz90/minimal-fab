@@ -129,6 +129,14 @@ body:not(.is-mobile)
   --tab-text-color-focused: var(--text-muted);
 }
 
+/* Minimal's Modern tabs are detached chips, so it turns the strip divider off.
+   The rule above has the same specificity and simply lands later, which put the
+   hairline back and re-attached the tabs to the note. Defer to the chosen tab
+   style instead. */
+body.tabs-modern .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
 /* Let macOS vibrancy show through the sidebars while the writing surface and
    its tab strip remain a single, opaque plane. Core marks these backgrounds
    transparent with !important, so restoring the writing plane must match it. */

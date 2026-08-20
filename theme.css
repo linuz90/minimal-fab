@@ -8560,6 +8560,10 @@ body:not(.is-mobile) .nav-folder.mod-root > .nav-folder-title .nav-folder-title-
   width: 24px;
 }
 
+body.tabs-modern .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
 body.is-translucent:not(.is-fullscreen)
   .workspace-split.mod-root
   .workspace-tabs,
