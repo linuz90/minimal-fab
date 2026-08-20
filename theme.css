@@ -1361,6 +1361,13 @@ body {
   color: var(--text-faint);
 }
 
+.metadata-properties-heading {
+  color: var(--text-faint);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
+  font-weight: 500;
+}
+
 .cm-hmd-internal-link,
 .cm-link,
 .cm-url {
@@ -3603,6 +3610,13 @@ body .table-view-table > thead > tr > th {
 
   opacity: 0.72;
   transition: opacity var(--mnml-transition-duration) ease;
+}
+
+.metadata-properties-heading .metadata-properties-title {
+  color: var(--text-faint);
+  font-family: var(--mnml-note-identity-font);
+  font-size: var(--mnml-note-identity-size);
+  font-weight: 500;
 }
 
 .markdown-rendered .mod-header + div > * {
