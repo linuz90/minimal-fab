@@ -21,6 +21,11 @@ settings:
 		description: Gives the inline note title full text contrast instead of mnml's muted default. Size and weight stay under Minimal's own inline title controls.
 		type: class-toggle
 	-
+		id: mnml-round-modal-buttons
+		title: Round modal buttons
+		description: Draws the modal close and header buttons as circular targets that only show a background on hover or keyboard focus.
+		type: class-toggle
+	-
 		id: mnml-sidebar-scroll-fade
 		title: Fade sidebar scroll edges
 		description: Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary. Adds a little breathing room at both ends.
@@ -47,6 +52,7 @@ body {
   --tab-outline-width: 0.5px;
   --mnml-transition-duration: 120ms;
   --mnml-scroll-fade: 16px;
+  --mnml-modal-button-size: 26px;
   --mnml-note-identity-font:
     -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue",
     sans-serif;
@@ -562,6 +568,46 @@ body:not(.is-mobile)
   .search-input-clear-button:is(:hover, :active) {
   color: var(--text-muted);
   opacity: 1;
+}
+
+/* Modal dismiss and header controls as round targets, the way macOS draws a
+   sheet's own buttons. Squaring the box first keeps the circle a circle
+   whatever glyph or padding the core stylesheet gives these elements, and the
+   background only appears on interaction so a resting dialog stays quiet. */
+body.mnml-round-modal-buttons :is(.modal-close-button, .modal-header-button) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  align-self: center;
+  box-sizing: border-box;
+  width: var(--mnml-modal-button-size);
+  min-width: var(--mnml-modal-button-size);
+  max-width: var(--mnml-modal-button-size);
+  height: var(--mnml-modal-button-size);
+  min-height: var(--mnml-modal-button-size);
+  max-height: var(--mnml-modal-button-size);
+  padding: 0;
+  border: 0;
+  /* Obsidian gives its controls a squircle by declaring corner-shape from
+     --corner-shape, which turns a 50% radius into a superellipse rather than a
+     circle. Retarget the variable instead of the property: corner-shape is too
+     new for the pinned Stylelint, which rejects it as an unknown property and
+     fails the build. The squircle stays everywhere else. */
+  --corner-shape: round;
+
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--text-faint);
+  transition:
+    background-color var(--mnml-transition-duration) ease,
+    color var(--mnml-transition-duration) ease;
+}
+
+body.mnml-round-modal-buttons
+  :is(.modal-close-button, .modal-header-button):is(:hover, :focus-visible) {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
 }
 
 /* Quiet document details, with stronger feedback only on interaction. */

@@ -44,14 +44,15 @@ Run `pnpm install` once, then `pnpm build` and reload Obsidian with `Cmd+R`. Cha
 
 mnml inherits every option Minimal exposes through the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, including **Minimal → Tabs → Tab style**, whose *Modern* option renders document tabs as detached rounded chips.
 
-mnml adds one option of its own under **Style Settings → mnml**:
+mnml adds a section of its own under **Style Settings → mnml**. Every option is off by default:
 
-| Option | Default | Effect |
-| --- | --- | --- |
-| Hide the tab bar divider | Off | Removes the hairline between the tab strip and the note |
-| Prominent note title | Off | Gives the inline note title full text contrast instead of mnml's muted default |
-| Fade sidebar scroll edges | Off | Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary |
-| Fade the note scroll edge | Off | Softens the seam where a scrolling note passes under its header |
+| Option | Effect |
+| --- | --- |
+| Hide the tab bar divider | Removes the hairline between the tab strip and the note |
+| Prominent note title | Gives the inline note title full text contrast instead of mnml's muted default |
+| Round modal buttons | Draws the modal close and header buttons as circular targets |
+| Fade sidebar scroll edges | Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary |
+| Fade the note scroll edge | Softens the seam where a scrolling note passes under its header |
 
 The *Modern* tab style already hides that hairline on its own, so the first option is only needed to get a seamless tab strip with the other tab styles.
 
