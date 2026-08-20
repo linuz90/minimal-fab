@@ -9318,6 +9318,14 @@ body.mnml-note-scroll-fade
   );
 }
 
+body:not(.mnml-note-scroll-fade)
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-header {
+  border-bottom: var(--divider-width) solid var(--divider-color);
+}
+
 body:not(.is-mobile)
   :is(
     .status-bar:hover .status-bar-item.plugin-sync,

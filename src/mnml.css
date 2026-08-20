@@ -285,6 +285,16 @@ body.mnml-note-scroll-fade
   );
 }
 
+/* A soft edge and a drawn edge are alternative answers to the same seam, so
+   the hairline stands down whenever the fade above is switched on. */
+body:not(.mnml-note-scroll-fade)
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-header {
+  border-bottom: var(--divider-width) solid var(--divider-color);
+}
+
 /* Reduce document chrome contrast so the note remains the visual focus. */
 .workspace .mod-root .workspace-tab-header-inner-title {
   color: var(--text-muted);
