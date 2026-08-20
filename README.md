@@ -40,6 +40,23 @@ ln -s ~/Code/obsidian-mnml/theme.css "/path/to/vault/.obsidian/themes/mnml/theme
 
 Run `pnpm install` once, then `pnpm build` and reload Obsidian with `Cmd+R`. Changes to `manifest.json` require a full restart.
 
+## Style Settings
+
+mnml inherits every option Minimal exposes through the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin, including **Minimal → Tabs → Tab style**, whose *Modern* option renders document tabs as detached rounded chips.
+
+mnml adds one option of its own under **Style Settings → mnml**:
+
+| Option | Default | Effect |
+| --- | --- | --- |
+| Hide the tab bar divider | Off | Removes the hairline between the tab strip and the note |
+| Prominent note title | Off | Gives the inline note title full text contrast instead of mnml's muted default |
+| Fade sidebar scroll edges | Off | Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary |
+| Fade the note scroll edge | Off | Softens the seam where a scrolling note passes under its header |
+
+The *Modern* tab style already hides that hairline on its own, so the first option is only needed to get a seamless tab strip with the other tab styles.
+
+Style Settings is optional. Without it, mnml uses the defaults above.
+
 ## Optional sidebar icons
 
 The folder icons shown in the screenshot come from the optional [Iconize](https://github.com/FlorianWoelki/obsidian-iconize) community plugin. mnml does not require or bundle Iconize; it simply gives monochrome sidebar icons spacing and contrast that fit the theme.

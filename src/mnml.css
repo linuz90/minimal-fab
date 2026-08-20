@@ -5,6 +5,33 @@ Keep this layer intentionally small. Minimal owns compatibility with Obsidian
 and community plugins; mnml should only define the visual character.
 */
 
+/* @settings
+
+name: mnml
+id: mnml-style
+settings:
+	-
+		id: mnml-tab-divider-hidden
+		title: Hide the tab bar divider
+		description: Removes the hairline between the tab strip and the note. The Modern tab style already hides it.
+		type: class-toggle
+	-
+		id: mnml-title-prominent
+		title: Prominent note title
+		description: Gives the inline note title full text contrast instead of mnml's muted default. Size and weight stay under Minimal's own inline title controls.
+		type: class-toggle
+	-
+		id: mnml-sidebar-scroll-fade
+		title: Fade sidebar scroll edges
+		description: Dissolves the file list into the toolbar above and the vault profile below instead of slicing rows at the scroll boundary. Adds a little breathing room at both ends.
+		type: class-toggle
+	-
+		id: mnml-note-scroll-fade
+		title: Fade the note scroll edge
+		description: Softens the seam where a scrolling note passes under its header.
+		type: class-toggle
+*/
+
 body {
   /* Typography */
   --font-text-size: 15px;
@@ -19,6 +46,7 @@ body {
   --divider-width: 0.5px;
   --tab-outline-width: 0.5px;
   --mnml-transition-duration: 120ms;
+  --mnml-scroll-fade: 16px;
   --mnml-note-identity-font:
     -apple-system, "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue",
     sans-serif;
@@ -137,6 +165,14 @@ body.tabs-modern .workspace .mod-root .workspace-tabs:not(.mod-stacked) {
   --tab-outline-width: 0px;
 }
 
+/* Opt-in seamless tab strip for any tab style, mirroring the sidebar above. */
+body.mnml-tab-divider-hidden
+  .workspace
+  .mod-root
+  .workspace-tabs:not(.mod-stacked) {
+  --tab-outline-width: 0px;
+}
+
 /* Let macOS vibrancy show through the sidebars while the writing surface and
    its tab strip remain a single, opaque plane. Core marks these backgrounds
    transparent with !important, so restoring the writing plane must match it. */
@@ -184,6 +220,13 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
   color: var(--text-normal);
 }
 
+/* Opt out of the muted title for readers who want the filename to carry the
+   page. Colour only: size and weight stay under Minimal's own Style Settings
+   controls, so this never overrides a value picked there. */
+body.mnml-title-prominent {
+  --inline-title-color: var(--text-normal);
+}
+
 /* Keep the filename in the tab title bar quiet but legible. */
 .view-header-title-container {
   opacity: 0.82;
@@ -225,6 +268,21 @@ body.theme-light.is-translucent:not(.is-fullscreen) .workspace-split.mod-root {
 .view-header-title-container:focus-within,
 .view-header:hover .view-header-title-container {
   opacity: 1;
+}
+
+/* The note scrolls under its own header with the same hard boundary the file
+   list has, so give the seam the same fade. Top only: the foot of a note ends
+   in backlinks and a status bar that should stay fully legible. */
+body.mnml-note-scroll-fade
+  .workspace
+  .mod-root
+  .workspace-leaf-content[data-type="markdown"]
+  .view-content {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade)
+  );
 }
 
 /* Reduce document chrome contrast so the note remains the visual focus. */
@@ -322,6 +380,23 @@ body:not(.is-mobile)
   --nav-indentation-guide-width: 0px;
 
   padding-inline-start: var(--size-4-2);
+}
+
+/* The file list is a scroll container, so its own overflow boundary slices rows
+   in half against the toolbar above and the vault profile below. A mask removes
+   pixels rather than painting over them, which is what keeps macOS vibrancy
+   intact behind the sidebar; an opaque overlay would flatten it. The fade
+   distance matches the block padding it adds, so a list sitting at rest has
+   nothing dimmed. */
+body.mnml-sidebar-scroll-fade .nav-files-container {
+  padding-block: var(--mnml-scroll-fade);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--mnml-scroll-fade),
+    #000 calc(100% - var(--mnml-scroll-fade)),
+    transparent 100%
+  );
 }
 
 .nav-files-container .collapse-icon svg.svg-icon {
