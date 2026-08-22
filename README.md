@@ -5,7 +5,7 @@
 
 ## Continue with Verso
 
-Install Verso from its [latest GitHub release](https://github.com/linuz90/obsidian-verso/releases/latest), or follow the installation guide in the [Verso repository](https://github.com/linuz90/obsidian-verso#install).
+Install [Verso from the Obsidian Community directory](https://community.obsidian.md/themes/verso), or use the manual installation guide in the [Verso repository](https://github.com/linuz90/obsidian-verso#install).
 
 Existing mnml releases remain available for historical installations, but will not receive updates. This repository is archived for provenance and attribution.
 
